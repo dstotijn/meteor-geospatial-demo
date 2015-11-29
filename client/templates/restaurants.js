@@ -12,6 +12,16 @@ var BOX = {
   }
 };
 
+var subscribeWithBounds = function(template, e) {
+  // Manually stop subscription if it exists.
+  if (handle) {
+    handle.stop();
+  }
+
+  // Subscribe to all restaurants currently displayed on the map.
+  handle = template.subscribe('restaurants', getMapBounds(e));
+};
+
 Template.restaurants.onCreated(function() {
   var template = this;
 
@@ -29,31 +39,27 @@ Template.restaurants.onRendered(function() {
 
   // Use Leaflet images from bevanhunt:leaflet.
   L.Icon.Default.imagePath = 'packages/bevanhunt_leaflet/images';
+
   // Render map with default bounds.
-  var map = L.map('map').fitBounds([
+  var map = L.map('map');
+
+  map.on('load', function(e) {
+    subscribeWithBounds(template, e);
+  });
+
+  map.fitBounds([
       [BOX.sw.lat, BOX.sw.lon], [BOX.ne.lat, BOX.ne.lon]
   ]);
+
   // Use tiles from the Standard tile layer of OpenStreetMap.
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    detectRetina: true
-  }).addTo(map);
+      detectRetina: true
+      }).addTo(map);
 
   // Leaflet event listener for `moveend` event, which is triggered after the
   // map was dragged or zoomed.
   map.on('moveend', function(e) {
-    // Manually stop the existing subscription.
-    handle.stop();
-    // Subscribe to all restaurants currently displayed on the map.
-    handle = template.subscribe('restaurants', {
-      sw: {
-        lat: e.target.getBounds().getSouthWest().lat,
-        lon: e.target.getBounds().getSouthWest().lng
-      },
-      ne: {
-        lat: e.target.getBounds().getNorthEast().lat,
-        lon: e.target.getBounds().getNorthEast().lng
-      }
-    });
+    subscribeWithBounds(template, e);
   });
 
   template.autorun(function() {
@@ -80,4 +86,3 @@ Template.restaurants.helpers({
     return template.restaurants();
   }
 });
-
