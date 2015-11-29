@@ -8,6 +8,7 @@ h2 {
 
 h1 {
   width: 100%;
+  font-size: 1.5rem;
 }
 
 #map {
@@ -28,13 +29,20 @@ h1 {
 
 .restaurants .listing ul,
 .restaurants .listing p {
-  margin-top: 4.5rem;
+  margin-top: 3.9rem;
 }
 
 @media (min-width: 40em) {
   .map-wrapper,
   .restaurants .listing {
-    width: 50%;
     height: 100vh;
+  }
+
+  .map-wrapper {
+    width: 66.66667%;
+  }
+
+  .restaurants .listing {
+    width: 33.33333%;
   }
 }

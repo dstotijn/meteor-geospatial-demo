@@ -87,6 +87,6 @@ Template.restaurants.helpers({
   },
   listIsEmpty: function() {
     var template = Template.instance();
-    return (template.restaurants().count() === 0);
+    return (template.restaurants().count() === 0 && handle.ready());
   }
 });
