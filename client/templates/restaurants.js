@@ -30,7 +30,7 @@ Template.restaurants.onCreated(function() {
   template.restaurants = function() {
     // Always return all documents from the collection. Because minimongo
     // doesn't support $geoWithin we cannot use client side filtering.
-    return Restaurants.find({});
+    return Restaurants.find({}, {sort: {name: 1}});
   };
 });
 
