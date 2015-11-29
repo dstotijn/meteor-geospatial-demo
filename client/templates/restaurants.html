@@ -1,15 +1,18 @@
 <template name="restaurants">
-  <div class="restaurants">
-    <div id="map" style="width:500px;height:500px;float:left;"></div>
-    <div class="listing" style="float:left;">
+  <div class="restaurants clearfix">
+    <div class="col col-6 map-wrapper">
+      <div id="map"></div>
+    </div>
+    <div class="listing col col-6 px2">
+      <h1 class="mxn2 mt0 mb0 p2 fixed bg-blue white">Meteor Geospatial Demo</h1>
       {{#if Template.subscriptionsReady}}
-        <ul class="list-reset">
+        <ul class="list-reset mxn2">
           {{#each restaurants}}
             <li class="p2 border-bottom">{{> restaurant}}</li>
           {{/each}}
         </ul>
       {{else}}
-        <p>Loading...</p>
+        <p class="italic gray">Loading...</p>
       {{/if}}
     </div>
   </div>
