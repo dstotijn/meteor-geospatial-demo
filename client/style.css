@@ -26,7 +26,8 @@ h1 {
   overflow-y: scroll;
 }
 
-.restaurants .listing ul {
+.restaurants .listing ul,
+.restaurants .listing p {
   margin-top: 4.5rem;
 }
 

@@ -12,7 +12,10 @@
           {{/each}}
         </ul>
       {{else}}
-        <p class="italic gray">Loading...</p>
+        <p class="italic gray p2">Loading...</p>
+      {{/if}}
+      {{#if listIsEmpty}}
+        <p class="gray py2">No restaurants found.</p>
       {{/if}}
     </div>
   </div>
