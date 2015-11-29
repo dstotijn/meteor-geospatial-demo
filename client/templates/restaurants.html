@@ -1,0 +1,17 @@
+<template name="restaurants">
+  <div class="restaurants">
+    <div id="map" style="width:500px;height:500px;float:left;"></div>
+    <div class="listing" style="float:left;">
+      {{#if Template.subscriptionsReady}}
+        <ul class="list-reset">
+          {{#each restaurants}}
+            <li class="p2 border-bottom">{{> restaurant}}</li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p>Loading...</p>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
