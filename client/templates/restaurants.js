@@ -72,10 +72,15 @@ Template.restaurants.onRendered(function() {
 
     // Add a marker layer for each restaurant.
     template.restaurants().forEach(function(restaurant) {
-      L.marker([
+      var marker = L.marker([
           restaurant.location.coordinates[1],
           restaurant.location.coordinates[0],
-      ]).addTo(map);
+      ]);
+      marker.restaurant = restaurant;
+      marker.on('click', function(e) {
+        handleMarkerClick(e);
+      });
+      marker.addTo(map);
     });
   });
 });

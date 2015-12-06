@@ -8,14 +8,14 @@
       {{#if Template.subscriptionsReady}}
         <ul class="list-reset mxn2">
           {{#each restaurants}}
-            <li class="p2 border-bottom">{{> restaurant}}</li>
+            <li>{{> restaurant}}</li>
           {{/each}}
         </ul>
       {{else}}
         <p class="italic gray py2">Loading...</p>
       {{/if}}
       {{#if listIsEmpty}}
-        <p class="py2">No restaurants found.</p>
+        <p>No restaurants found.</p>
       {{/if}}
     </div>
   </div>
