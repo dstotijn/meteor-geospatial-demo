@@ -12,7 +12,7 @@ the current GPS bounds of the map.
 
 ## Demo
 
-A live demo is available [here](http://meteor-geospatial-demo.com/).
+A live demo is available [here](http://meteor-geospatial-demo.meteor.com/).
 
 ## Installation & usage
 
