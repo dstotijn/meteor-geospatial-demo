@@ -8,6 +8,8 @@ etc.). Using MongoDB's `$geoWithin` geospatial operator (which only works on the
 server, *not* with `minimongo`) a restaurants subscription is created based on
 the current GPS bounds of the map.
 
+![Meteor Geospatial Demo (screenshot)](//i.imgur.com/aBRrlVI.jpg)
+
 ## Demo
 
 A live demo is available [here](http://meteor-geospatial-demo.com/).
