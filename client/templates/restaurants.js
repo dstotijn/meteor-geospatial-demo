@@ -1,5 +1,7 @@
 // Subscription handle used in various Template functions.
 var handle;
+// The Leaflet marker layers related to restaurants.
+var layers = {};
 // Default map bounds which encompass Manhattan.
 var BOX = {
   sw: {
@@ -62,26 +64,24 @@ Template.restaurants.onRendered(function() {
     subscribeWithBounds(template, e);
   });
 
-  template.autorun(function() {
-    // Before adding markers, remove them all to prevent duplicates.
-    map.eachLayer(function(layer) {
-      if (layer.options.pane === "markerPane") {
-        map.removeLayer(layer);
-      }
-    });
-
-    // Add a marker layer for each restaurant.
-    template.restaurants().forEach(function(restaurant) {
+  template.restaurants().observeChanges({
+    added: function(id, restaurant) {
       var marker = L.marker([
           restaurant.location.coordinates[1],
           restaurant.location.coordinates[0],
       ]);
       marker.restaurant = restaurant;
+      marker.restaurant._id = id;
       marker.on('click', function(e) {
         handleMarkerClick(e);
       });
       marker.addTo(map);
-    });
+      layers[id] = marker;
+    },
+    removed: function(id) {
+      map.removeLayer(layers[id]);
+      delete layers[id];
+    }
   });
 });
 
