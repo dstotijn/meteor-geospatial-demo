@@ -1,3 +1,6 @@
+// Use Leaflet images from bevanhunt:leaflet.
+L.Icon.Default.imagePath = 'packages/bevanhunt_leaflet/images';
+
 getMapBounds = function(e) {
   return {
     sw: {
